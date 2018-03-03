@@ -1,7 +1,7 @@
 /**
    NoteView.js
    ===========
-   Version 0.1 2018-03-03T09:59:24
+   Version 0.2 2018-03-03T11:40:26
    -------------------------------
    Display a single note
  */
@@ -9,7 +9,14 @@
 import React, { Component } from 'react';
 
 class NoteView extends Component {
-  console.log('NoteView Component');
+
+  componentWillMount() {
+    console.log('mounting ... NoteView Component');
+  }
+
+  componentDidMount() {
+    console.log('Entered NoteView Component');
+  }
 
   render() {
     return (
@@ -17,3 +24,5 @@ class NoteView extends Component {
     );
   }
 }
+
+export default NoteView;

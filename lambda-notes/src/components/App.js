@@ -1,19 +1,53 @@
+/**
+   App.js
+   ======
+   Version 0.2 2018-03-03T13:34:56
+   -------------------------------
+   Main App Component;
+   Sending props to a child component from a Route component
+   ==> see https://github.com/ReactTraining/react-router/issues/4105
+ */
+
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import { BrowserRouter, Route } from 'react-router-dom';
+
+import NoteStart from './NoteStart';
+import NotesList from './NotesList';
+import NoteView from './NoteView';
+import NoteCreate from './NoteCreate';
+import NoteEdit from './NoteEdit';
+
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      self: 'App',
+    }
+  }
+
+  componentWillMount() {
+    console.log('Mounting ... App.js');
+  }
+
+  componentDidMount() {
+    console.log('Entered => App.js');
+  }
+  
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Route path="/" exact component={NoteStart} />
+          <Route path="/notes" exact component={NotesList} />
+          <Route path="/notes/view" component={NoteView} />
+          <Route path="/notes/create" render={routeProps => <NoteCreate {...routeProps} self="NoteCreate" />} />
+          <Route path="/notes/edit" render={routeProps => <NoteEdit {...routeProps} self="NoteEdit" /> } />
+        </div>
+      </BrowserRouter>
     );
   }
 }

@@ -1,7 +1,7 @@
 /**
    NotesList.js
    ============
-   Version 0.1 2018-03-03T09:55:11
+   Version 0.2 2018-03-03T12:17:17
    -------------------------------
    Display all notes in a grid pattern
  */
@@ -9,7 +9,10 @@
 import React, { Component } from 'react';
 
 class NotesList extends Component {
-  console.log('NotesList Component');
+
+  componentDidMount() {
+    console.log('Entered => NotesList Component');
+  }
 
   render() {
     return (
@@ -17,3 +20,5 @@ class NotesList extends Component {
     );
   }
 }
+
+export default NotesList;
