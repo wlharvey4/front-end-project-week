@@ -34,15 +34,6 @@ class NotesList extends Component {
     console.log('NoteData: ', NoteData);
   }
 
-  clickHandler = (e) => {
-    e.preventDefault();
-    console.log('EVENT', e);
-    console.log('TARGET', e.target);
-    console.log('PROPS', this.props);
-    console.log('STATE', this.state);
-    console.log('DATA', e.target.dataset.index);
-  }
-
   listNotes = (notes) => {
     return (
       <ul className='listNotes'> {
