@@ -31,10 +31,12 @@ class App extends Component {
 
   componentWillMount() {
     console.log('Mounting ... App.js');
+    console.log('STATE: ', this.state);
   }
 
   componentDidMount() {
     console.log('Entered => App.js');
+    console.log('STATE: ', this.state);
   }
   
   render() {
@@ -43,6 +45,7 @@ class App extends Component {
         <div className="App">
           <Route path="/" exact component={NoteStart} />
           <Route path="/notes" exact component={NotesList} />
+          <Route path="/notes/list" component={NotesList} />
           <Route path="/notes/view" component={NoteView} />
           <Route path="/notes/create" render={routeProps => <NoteCreate {...routeProps} self="NoteCreate" />} />
           <Route path="/notes/edit" render={routeProps => <NoteEdit {...routeProps} self="NoteEdit" /> } />

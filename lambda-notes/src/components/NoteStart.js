@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import NoteData from './NoteData';
 
 const NoteStart = () => {
   console.log('Entered => Note Start');
