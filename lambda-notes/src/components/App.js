@@ -1,12 +1,13 @@
 /**
    App.js
    ======
-   Version 0.3 2018-03-04T12:07:26
+   Version 0.4 2018-03-04T17:05:48
    -------------------------------
    Main App Component;
    Sending props to a child component from a Route component
    ==> see https://github.com/ReactTraining/react-router/issues/4105
-   Added NoteDelete Route
+   Added NoteDelete Route;
+   Added state attribute started
  */
 
 import React, { Component } from 'react';
@@ -28,12 +29,16 @@ class App extends Component {
 
     this.state = {
       self: 'App',
+      started: '',
     }
   }
 
   componentWillMount() {
     console.log('Mounting ... App.js');
     console.log('STATE: ', this.state);
+    console.log('PROPS: ', this.props);
+    sessionStorage.setItem('started', 'false');
+    this.setState({ started: false });
   }
 
   componentDidMount() {
