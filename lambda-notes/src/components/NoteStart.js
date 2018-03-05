@@ -1,26 +1,26 @@
 /**
    NoteStart.js
    ============
-   Version 0.2 2018-03-04T07:39:01
-   -------------------------------
    Display the initial start page with start button;
+   -------------------------------------------------
+   Version 0.2 2018-03-04T07:39:01
    Use Link instead of Button's clickHandler
+   _________________________________________________
+   Version 0.3 2018-03-05T05:06:08
+   Factored out the main header component
+   _________________________________________________
  */
 
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const NoteStart = () => {
-  console.log('Entered => Note Start');
+  console.log('Entered => NoteStart');
 
   return (
-    <div className ="NoteStart">
+    <div className='NoteStart'>
 
-      <header className="App-header">
-        <h1 className="App-title">Welcome to Lambda Notes</h1>
-      </header>
-
-      <p className="App-intro">
+      <p className='App-intro'>
         Click the Start button to enter Lambda Notes
       </p>
 
