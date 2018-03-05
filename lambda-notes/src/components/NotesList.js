@@ -1,13 +1,14 @@
 /**
    NotesList.js
    ============
-   Version 0.4 2018-03-04T08:05:14
+   Version 0.5 2018-03-04T16:34:17
    -------------------------------
    Display all notes in a grid pattern;
    import NoteData;
    figure out how to get the note index from a mouse click on a note using
    /HTMLElement.dataset;
    changed to using Link with a prop index;
+   wrapped Link inside li; added color: black
  */
 
 import React, { Component } from 'react';
@@ -39,12 +40,20 @@ class NotesList extends Component {
       <ul className='listNotes'> {
         notes.map((note, index) => {
           return (
-            <Link to={{ pathname:"/notes/view", state:{index} }}
-                  key={index}
-                  style={{ textDecoration: 'none' }}
+            <li key={index}>
+              <Link
+                to={{
+                  pathname:"/notes/view",
+                  state:{index}
+                }}
+                style={{
+                  textDecoration: 'none',
+                  color: 'black',
+                }}
               >
-              <li> <Note note={note} index={index} /> </li>
-            </Link>
+                <Note note={note} index={index} />
+              </Link>
+            </li>
           )
         })
       }

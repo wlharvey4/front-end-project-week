@@ -1,11 +1,12 @@
 /**
    App.js
    ======
-   Version 0.2 2018-03-03T13:34:56
+   Version 0.3 2018-03-04T12:07:26
    -------------------------------
    Main App Component;
    Sending props to a child component from a Route component
    ==> see https://github.com/ReactTraining/react-router/issues/4105
+   Added NoteDelete Route
  */
 
 import React, { Component } from 'react';
@@ -18,6 +19,7 @@ import NotesList from './NotesList';
 import NoteView from './NoteView';
 import NoteCreate from './NoteCreate';
 import NoteEdit from './NoteEdit';
+import NoteDelete from './NoteDelete';
 
 class App extends Component {
 
@@ -49,6 +51,7 @@ class App extends Component {
           <Route path="/notes/view" component={NoteView} />
           <Route path="/notes/create" render={routeProps => <NoteCreate {...routeProps} self="NoteCreate" />} />
           <Route path="/notes/edit" render={routeProps => <NoteEdit {...routeProps} self="NoteEdit" /> } />
+          <Route path="/notes/delete" component={NoteDelete} />
         </div>
       </BrowserRouter>
     );

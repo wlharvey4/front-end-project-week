@@ -8,7 +8,7 @@
  */
 
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Note from './Note';
 import NoteData from './NoteData';
 
@@ -37,8 +37,11 @@ class NoteView extends Component {
     return (
       <div className="NoteView">
         <h1>Note View Component</h1>
-        <NavLink to="/notes/edit" >Edit </NavLink>
-        <NavLink to="/notes/delete" >Delete </NavLink>
+        <Link to="/notes/edit" >Edit </Link>
+        <Link to={{
+          pathname:"/notes/delete",
+          state:this.state.index,
+          }} >Delete </Link>
         <h2>Index: {this.state.index}</h2>
         <Note note={NoteData[this.state.index]} />
       </div>

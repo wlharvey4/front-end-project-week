@@ -1,7 +1,7 @@
 /**
    NoteEdit.js
    ===========
-   Version 0.2 2018-03-03T13:39:51
+   Version 0.3 2018-03-04T12:05:29
    -------------------------------
    Edit a Note
    Using Composition
@@ -19,7 +19,10 @@ class NoteEdit extends Component {
 
   render() {
     return (
-      <NoteCreate self={this.props.self} />
+      <div className="NoteEdit">
+        <h1>NoteEdit Component</h1>
+        <NoteCreate self={this.props.self} />
+      </div>
     );
   }
 }
