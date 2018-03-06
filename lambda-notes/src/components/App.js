@@ -4,20 +4,44 @@
    Main App Component;
    --------------------------------------------------
    Version 0.4 2018-03-04T17:05:48
-   Sending props to a child component from a Route component
-   ==> see https://github.com/ReactTraining/react-router/issues/4105
-   Added NoteDelete Route;
-   Added state attribute started
+   ..................................................
+   - sending props to a child component from a Route
+     component ==> see
+     https://github.com/ReactTraining/react-router/issues/4105
+   - added NoteDelete Route;
+   - added state attribute started
    __________________________________________________
    Version 0.5 2018-03-05T05:09:38
-   Added NotesHeader and NotesNav Components; rearranged; started=false;
-   Added NotesContent; factored out Routes into NotesContent;
+   ..................................................
+   - Added NotesHeader and NotesNav Components;
+     rearranged; started=false;
+   - Added NotesContent; factored out Routes into
+     NotesContent;
+   __________________________________________________
+   Version 0.6 2018-03-05T07:47:24
+   ..................................................
+   - removed Route from import;
+   - reformatted comments
+   __________________________________________________
+   Version 0.7 2018-03-05T20:15:45
+   ..................................................
+   - returned Routes to App;
+   - moved Router to index.js
+   - set state.started correctly by looking to
+     sessionStorage; App now correctly redirects to
+     / when not 'logged in';
    __________________________________________________
  */
 
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
+import NoteStart from './NoteStart';
+import NotesList from './NotesList';
+import NoteView from './NoteView';
+import NoteCreate from './NoteCreate';
+import NoteEdit from './NoteEdit';
+import NoteDelete from './NoteDelete';
 import NotesHeader from './NotesHeader';
 import NotesNav from './NotesNav';
 import NotesContent from './NotesContent';
@@ -31,7 +55,7 @@ class App extends Component {
 
     this.state = {
       self: 'App',
-      started: false,
+      started: sessionStorage.getItem('started') === 'true',
     }
   }
 
@@ -39,7 +63,6 @@ class App extends Component {
     console.log('Mounting ... App.js');
     console.log('APP PRE STATE: ', this.state);
     console.log('APP PRE PROPS: ', this.props);
-    sessionStorage.setItem('started', 'false');
   }
 
   componentDidMount() {
@@ -49,16 +72,28 @@ class App extends Component {
   }
   
   render() {
-    return (
-      <BrowserRouter>
 
-        <div className="App">
+    return (
+      <div className="App">
+
+        <div className="Content">
           <NotesHeader id="NotesHeader" />
           <NotesNav id="NotesNav" />
           <NotesContent id="NotesContent" />
         </div>
 
-      </BrowserRouter>
+        <div className='Routes'>
+          <Route path="/" exact component={NoteStart} />
+          {/* <Route path="/notes" exact component={NotesList} /> */}
+          <Route path="/notes/list" component={NotesList} />
+          <Route path="/notes/view" component={NoteView} />
+          <Route path="/notes/create" render={routeProps => <NoteCreate {...routeProps} id="NoteCreate" />} />
+          <Route path="/notes/edit" render={routeProps => <NoteEdit {...routeProps} id="NoteEdit" /> } />
+          <Route path="/notes/delete" component={NoteDelete} />
+        </div>
+
+      </div>
+
     );
   }
 }

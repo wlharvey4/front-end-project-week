@@ -18,6 +18,12 @@
    ..................................................
    - Added state.started; added NotesCheckStarted; 
    __________________________________________________
+   Version 0.5 2018-03-05T22:01:06
+   ..................................................
+   - correctly set state.started by looking to
+     sessionStorage;
+   - changed instances of id to self
+   __________________________________________________
  */
 
 import React, { Component } from 'react';
@@ -30,20 +36,19 @@ class NoteCreate extends Component {
     super(props);
 
     this.state = {
-      self: this.props.id,
+      self: this.props.self,
       title: '',
-      started: false,
+      started: sessionStorage.getItem('started') === 'true',
     }
   }
 
   componentWillMount() {
-    console.log(`Mounting ... ${this.state.id} Component`);
-    this.setState({ title: this.props.id });
-    this.setState({ started: sessionStorage.getItem('started') === 'true' });
+    console.log(`Mounting ... ${this.state.self} Component`);
+    this.setState({ title: this.props.self });
   }
 
   componentDidMount() {
-    console.log(`Entered => ${this.state.id} Component`);
+    console.log(`Entered => ${this.state.self} Component`);
   }
 
   render() {

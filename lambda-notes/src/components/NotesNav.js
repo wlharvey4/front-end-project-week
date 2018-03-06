@@ -4,15 +4,21 @@
    App Main Navigation Component
    --------------------------------------------------
    Version 0.1 2018-03-05T05:11:30
-   Initial Commit
+   ..................................................
+   - Initial Commit
+   __________________________________________________
+   Version 0.2 2018-03-05T21:56:07
+   ..................................................
+   - Called function with props
    __________________________________________________
  */
 
 import React from 'react';
 
-const NotesNav = () => {
+const NotesNav = (props) => {
 
-  console.log('Entered NotesNav');
+  console.log(`Entered => ${props.id}`);
+  console.log('PROPS: ', props);
 
   return (
     <div className='NotesNav'>

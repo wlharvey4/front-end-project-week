@@ -21,10 +21,16 @@
    -refactored listNotes; moved ul into render;
    -added NotesCheckStarted method;
    __________________________________________________
+   Version 0.8 2018-03-05T08:05:55
+   ..................................................
+   - Removed Redirect from import;
+   - refactored state.started to check sessionStorage
+   - call NotesCheckStarted with state.started
+   __________________________________________________
  */
 
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Note from './Note';
 import NoteData from './NoteData';
@@ -37,19 +43,18 @@ class NotesList extends Component {
 
     this.state = {
       self: 'NotesList',
-      started: false,
+      started: sessionStorage.getItem('started') === 'true',
     }
   }
 
   componentWillMount() {
     console.log(`Mounting ... ${this.state.self} Component`);
     console.log('STATE: ', this.state);
-
-    this.setState({ started: sessionStorage.getItem('started') === 'true' });
+    console.log('STARTED: ', sessionStorage.getItem('started'));
   }
 
   componentDidMount() {
-    console.log(`Entered => ${this.started.self} Component`);
+    console.log(`Entered => ${this.state.self} Component`);
     console.log('NoteData: ', NoteData);
     console.log('STATE: ', this.state);
   }
