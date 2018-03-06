@@ -31,6 +31,11 @@
      sessionStorage; App now correctly redirects to
      / when not 'logged in';
    __________________________________________________
+   Version 0.8 2018-03-06T08:04:06
+   ..................................................
+   - changed base route to /notes
+   - factored out main note view into NoteMain
+   __________________________________________________
  */
 
 import React, { Component } from 'react';
@@ -42,9 +47,6 @@ import NoteView from './NoteView';
 import NoteCreate from './NoteCreate';
 import NoteEdit from './NoteEdit';
 import NoteDelete from './NoteDelete';
-import NotesHeader from './NotesHeader';
-import NotesNav from './NotesNav';
-import NotesContent from './NotesContent';
 
 import './App.css';
 
@@ -76,19 +78,12 @@ class App extends Component {
     return (
       <div className="App">
 
-        <div className="Content">
-          <NotesHeader id="NotesHeader" />
-          <NotesNav id="NotesNav" />
-          <NotesContent id="NotesContent" />
-        </div>
-
         <div className='Routes'>
-          <Route path="/" exact component={NoteStart} />
-          {/* <Route path="/notes" exact component={NotesList} /> */}
-          <Route path="/notes/list" component={NotesList} />
-          <Route path="/notes/view" component={NoteView} />
+          <Route path="/notes" exact  component={NoteStart} />
+          <Route path="/notes/list"   component={NotesList} />
+          <Route path="/notes/view"   component={NoteView} />
           <Route path="/notes/create" render={routeProps => <NoteCreate {...routeProps} id="NoteCreate" />} />
-          <Route path="/notes/edit" render={routeProps => <NoteEdit {...routeProps} id="NoteEdit" /> } />
+          <Route path="/notes/edit"   render={routeProps => <NoteEdit {...routeProps} id="NoteEdit" /> } />
           <Route path="/notes/delete" component={NoteDelete} />
         </div>
 

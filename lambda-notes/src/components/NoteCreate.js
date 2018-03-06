@@ -43,8 +43,8 @@ class NoteCreate extends Component {
   }
 
   componentWillMount() {
-    console.log(`Mounting ... ${this.state.self} Component`);
-    this.setState({ title: this.props.self });
+    console.log(`Mounting ... ${this.props.id} Component`);
+    this.setState({ title: this.props.id });
   }
 
   componentDidMount() {

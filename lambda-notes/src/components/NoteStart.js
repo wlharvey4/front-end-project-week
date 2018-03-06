@@ -16,10 +16,16 @@
    - Changed functional component to class component;
    - click handler from button sets started true
    __________________________________________________
+   Version 0.5 2018-03-06T08:54:25
+   ..................................................
+   - Added NotesHeader
+   __________________________________________________
  */
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
+import NotesHeader from './NotesHeader';
 
 class NoteStart extends Component {
 
@@ -56,6 +62,8 @@ class NoteStart extends Component {
   render() {
     return (
       <div className='NoteStart'>
+
+        <NotesHeader id="NotesHeader" />
 
         <p className='App-intro'>
           Click the Start button to enter Lambda Notes

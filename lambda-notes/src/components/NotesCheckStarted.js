@@ -11,6 +11,10 @@
    ..................................................
    - Added console.log
    __________________________________________________
+   Version 0.3 2018-03-06T08:03:29
+   ..................................................
+   - changed redirect to /notes
+   __________________________________________________
  */
 
 import React from 'react';
@@ -19,7 +23,7 @@ import { Redirect } from 'react-router-dom';
 const notesCheckStarted = (started, rendercb) => {
   console.log(`Entered NotesCheckStarted => ${started}`);
   if (!started) return (
-    <Redirect to='/' />
+    <Redirect to='/notes' />
   );
   return rendercb();
 }

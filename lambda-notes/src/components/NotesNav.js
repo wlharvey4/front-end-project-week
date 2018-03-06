@@ -11,9 +11,14 @@
    ..................................................
    - Called function with props
    __________________________________________________
+   Version 0.3 2018-03-06T10:03:33
+   ..................................................
+   - changed list items into Links
+   __________________________________________________
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NotesNav = (props) => {
 
@@ -24,8 +29,8 @@ const NotesNav = (props) => {
     <div className='NotesNav'>
       <nav className='Nav'>
         <ul className='NotesNav-MenuList'>
-          <li>List Notes</li>
-          <li>Create New Note</li>
+          <Link to="/notes/list">List Notes</Link>
+          <Link to="/notes/create">Create New Note</Link>
         </ul>
       </nav>
     </div>

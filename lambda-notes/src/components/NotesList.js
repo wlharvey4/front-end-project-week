@@ -25,13 +25,19 @@
    ..................................................
    - Removed Redirect from import;
    - refactored state.started to check sessionStorage
-   - call NotesCheckStarted with state.started
+   - call NotesCheckStarted with state.started;
+   - console.logged props
+   __________________________________________________
+   Version 0.9 2018-03-06T09:08:10
+   ..................................................
+   - Added new component NotesMain
    __________________________________________________
  */
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import NotesMain from './NotesMain';
 import Note from './Note';
 import NoteData from './NoteData';
 import notesCheckStarted from './NotesCheckStarted';
@@ -50,6 +56,7 @@ class NotesList extends Component {
   componentWillMount() {
     console.log(`Mounting ... ${this.state.self} Component`);
     console.log('STATE: ', this.state);
+    console.log('PROPS: ', this.props);
     console.log('STARTED: ', sessionStorage.getItem('started'));
   }
 
@@ -57,6 +64,7 @@ class NotesList extends Component {
     console.log(`Entered => ${this.state.self} Component`);
     console.log('NoteData: ', NoteData);
     console.log('STATE: ', this.state);
+    console.log('PROPS: ', this.props);
   }
 
   listNotes = (notes) => {
@@ -91,6 +99,8 @@ class NotesList extends Component {
     return notesCheckStarted(this.state.started, () => {
       return (
         <div className="NotesList">
+
+          <NotesMain id="NotesMain" />
 
           <article className="ListOfNotes">
             <h1>Notes List Component</h1>
