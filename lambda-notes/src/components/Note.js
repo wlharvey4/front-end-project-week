@@ -11,6 +11,10 @@
    ..................................................
    - corrected syntax errors
    __________________________________________________
+   Version 0.3 2018-03-06T10:53:20
+   ..................................................
+   - Added title, id, and content headings
+   __________________________________________________
  */
 
 import React from 'react';
@@ -22,8 +26,9 @@ const Note = (props) => {
 
   return (
     <div className='Note'>
-      <h2>{props.note.title}</h2>
-      <p>{props.note.contents}</p>
+      <h2>Title: {props.note.title}</h2>
+      <h3>Id: {props.note.id}</h3>
+      <p>Content: {props.note.contents}</p>
     </div>
   );
 }
