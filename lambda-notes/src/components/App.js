@@ -36,6 +36,10 @@
    - changed base route to /notes
    - factored out main note view into NoteMain
    __________________________________________________
+   Version 0.9 2018-03-09T06:12:02
+   ..................................................
+   - changed id to self in NoteCreate and NoteEdit
+   __________________________________________________
  */
 
 import React, { Component } from 'react';
@@ -82,8 +86,14 @@ class App extends Component {
           <Route path="/notes" exact  component={NoteStart} />
           <Route path="/notes/list"   component={NotesList} />
           <Route path="/notes/view"   component={NoteView} />
-          <Route path="/notes/create" render={routeProps => <NoteCreate {...routeProps} id="NoteCreate" />} />
-          <Route path="/notes/edit"   render={routeProps => <NoteEdit {...routeProps} id="NoteEdit" /> } />
+          <Route path="/notes/create"
+                 render={routeProps =>
+                   <NoteCreate {...routeProps} self="NoteCreate" />}
+          />
+          <Route path="/notes/edit"
+                 render={routeProps =>
+                   <NoteEdit {...routeProps} self="NoteEdit" /> }
+          />
           <Route path="/notes/delete" component={NoteDelete} />
         </div>
 

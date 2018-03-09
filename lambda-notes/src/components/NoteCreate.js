@@ -30,11 +30,22 @@
    - changed title to use state;
    - added createNoteForm method;
    __________________________________________________
+   Version 0.7 2018-03-09T06:02:21
+   ..................................................
+   - refactored Form based upon some learning;
+   - refactored state to take account of what kind of
+     component is calling, Create or Edit;
+   - refactored state submit to be either Create or
+     Edit
+   __________________________________________________
  */
 
 import React, { Component } from 'react';
+import randomTitle from 'random-title';
+import randomParagraph from 'random-paragraph';
 
 import NotesMain from './NotesMain';
+import NoteData from './NoteData';
 import notesCheckStarted from './NotesCheckStarted';
 
 class NoteCreate extends Component {
@@ -46,16 +57,28 @@ class NoteCreate extends Component {
       self: this.props.self,
       title: '',
       started: sessionStorage.getItem('started') === 'true',
+      noteTitle: '',
+      noteContent: '',
+      submit: '',
     }
   }
-
+  
   componentWillMount() {
-    console.log(`Mounting ... ${this.props.id} Component`);
+    console.log(`Mounting ... ${this.props.self} Component`);
     console.log('PRE PROPS: ', this.props);
     console.log('PRE STATE: ', this.state);
 
-    this.setState({ self: this.props.id });
-    this.setState({ title: this.props.id });
+    this.setState({
+      title: this.props.self.replace(/Note/, ''),
+      index: this.props.index,
+      noteTitle: this.props.self.search(/Create/) ?
+                 randomTitle() :
+                 NoteData[this.props.index].title,
+      noteContent: this.props.self.search(/Create/) ?
+                   randomParagraph() :
+                   NoteData[this.props.index].contents,
+      submit: this.props.self.includes('Create') ? 'Create' : 'Edit',
+    });
   }
 
   componentDidMount() {
@@ -64,19 +87,58 @@ class NoteCreate extends Component {
     console.log('STATE: ', this.state);
   }
 
+  titleChangeHandler = (e) => {
+    this.setState({ noteTitle: e.target.value });
+  }
+  contentChangeHandler = (e) => {
+    this.setState({ content: e.target.value });
+  }
+  titleSubmitted = (e) => {
+    e.preventDefault();
+    console.log(`Title submitted ${e.target.value}`);
+  }
+  contentSubmitted = (e) => {
+    e.preventDefault();
+    console.log(`Content submitted: ${e.target.value}`);
+  }
+
   createNoteForm = () => {
     return (
-      <div className="createNoteForm">
+      <div className="CreateNoteForm">
         <h3>Form Goes Here</h3>
-        <form className="NoteCreateForm">
+        <form className="NoteForm" onSubmit={this.contentSubmitted}>
           <div className="CreateNoteTitle">
-            <label htmlFor="title">Title: </label>
-            <input type="text" id="title" title="Title" defaultValue="Default Title" />
+            <label>Note Title:
+              <input
+                className="NoteTitleInput"
+                type="text"
+                id="noteTitle"
+                title="NoteTitle"
+                placeholder="Title..."
+                autoFocus
+                value={this.state.noteTitle}
+                onChange={this.titleChangeHandler}
+              />
+            </label>
           </div>
           <div className="CreateNoteContent">
-            <label htmlFor="content">Content: </label>
-            <textarea type="text" id="content" title="Content" defaultValue="Default content...">
-            </textarea>
+            <label>Content:
+              <textarea
+                className="NoteContentTextarea"
+                type="text"
+                id="noteContent"
+                placeholder="Content..."
+                value={this.state.noteContent}
+                onChange={this.contentChangeHandler}
+                onSubmit={this.contentSubmitted}
+              >
+              </textarea>
+            </label>
+          </div>
+          <div className="SubmitButton">
+            <input type="submit"
+                   value={this.state.submit}
+            />
           </div>
         </form>
       </div>

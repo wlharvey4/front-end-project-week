@@ -14,6 +14,10 @@
    - added state.self from props.self;
    - correctly set state.started from sessionStorage
    __________________________________________________
+   Version 0.6 2018-03-09T05:59:53
+   - Added state of index from NoteView Component;
+   - changed id to self
+   __________________________________________________
  */
 
 import React, { Component } from 'react';
@@ -25,7 +29,8 @@ class NoteEdit extends Component {
     super(props);
 
     this.state = {
-      self: this.props.id,
+      self: this.props.self,
+      index: this.props.location.state,
       started: sessionStorage.getItem('started') === 'true',
     }
   }
@@ -34,7 +39,7 @@ class NoteEdit extends Component {
     return (
       <div className="NoteEdit">
         <h1>NoteEdit Component</h1>
-        <NoteCreate self={this.state.self} />
+        <NoteCreate self={this.state.self} index={this.state.index} />
       </div>
     );
   }

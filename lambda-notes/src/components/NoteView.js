@@ -11,6 +11,9 @@
    Version 0.5 2018-03-06T09:12:15
    - added main note view
    __________________________________________________
+   Version 0.6 2018-03-09T05:57:37
+   - Added state to Edit link
+   __________________________________________________
  */
 
 import React, { Component } from 'react';
@@ -52,11 +55,14 @@ class NoteView extends Component {
 
         <h1>Note View Component</h1>
 
-        <Link to="/notes/edit" >Edit </Link>
+        <Link to={{
+          pathname: "/notes/edit",
+          state: this.state.index,
+        }} >Edit </Link>
         <Link to={{
           pathname:"/notes/delete",
           state:this.state.index,
-          }} >Delete </Link>
+        }} >Delete </Link>
 
         <h2>Index: {this.state.index}</h2>
 
